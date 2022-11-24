@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">pomodoroClock</string>
+    <string name="title_list">待办</string>
+    <string name="title_statistics">数据统计</string>
+    <string name="title_setting">设置</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_home_main">HomeMainActivit</string>
+</resources>
