@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
             overridePendingTransition(0, 0);
         }else if(view.getId()==R.id.setting_button){
-            Intent intent = new Intent(this,setting_layout.class);
+            Intent intent = new Intent(this,todo_layout.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
         }
