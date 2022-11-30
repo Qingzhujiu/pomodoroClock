@@ -69,11 +69,9 @@ public class todo_insert_dialog extends Dialog implements View.OnClickListener {
     public void onClick(View view) {
         if (R.id.todo_layout_bt==view.getId()){
             TodoInfo todoInfo = new TodoInfo(false,todo_dialog_et.getText().toString());
-            this.onStop();
-
+            this.cancel();
             //将该信息存入数据库中
             //待办
-
 
         }
 
