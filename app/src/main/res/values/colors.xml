@@ -10,4 +10,6 @@
     <color name="transparent">#00000000</color>
     <color name="yellow1">#ffff99</color>
     <color name="blue1">#A5CDED</color>
+    <color name="buttonLabel">#FFFFFFFF</color>
+    <color name="colorPrimary">#66ccff</color>
 </resources>
