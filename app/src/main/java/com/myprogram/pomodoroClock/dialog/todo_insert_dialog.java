@@ -1,4 +1,4 @@
-package com.myprogram.pomodoroClock;
+package com.myprogram.pomodoroClock.dialog;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.myprogram.pomodoroClock.R;
 import com.myprogram.pomodoroClock.pojo.TodoInfo;
 
 public class todo_insert_dialog extends Dialog implements View.OnClickListener {
@@ -20,7 +21,8 @@ public class todo_insert_dialog extends Dialog implements View.OnClickListener {
     Button todo_dialog_bt;
     EditText todo_dialog_et;
 
-   todo_insert_dialog(Context context){
+
+   public todo_insert_dialog(Context context){
        super(context);
    }
 
@@ -67,7 +69,7 @@ public class todo_insert_dialog extends Dialog implements View.OnClickListener {
     public void onClick(View view) {
         if (R.id.todo_layout_bt==view.getId()){
             TodoInfo todoInfo = new TodoInfo(false,todo_dialog_et.getText().toString());
-            this.cancel();
+            this.onStop();
 
             //将该信息存入数据库中
             //待办

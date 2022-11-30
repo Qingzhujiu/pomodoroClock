@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/tomato_clock_fragment_container"
+    tools:context=".fragment.tomatoClockFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@color/blue1">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="6dp"
+                android:text="番茄钟列表"
+                android:textSize="25sp"
+                android:textColor="@color/black"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <ImageButton
+                    android:id="@+id/todo_layout_bt"
+                    android:layout_marginTop="6dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/add_button"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/todo_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="5dp"
+            android:listSelector="@color/transparent" />
+
+    </LinearLayout>
+</FrameLayout>

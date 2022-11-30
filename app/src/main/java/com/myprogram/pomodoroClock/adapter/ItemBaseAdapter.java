@@ -1,7 +1,6 @@
 package com.myprogram.pomodoroClock.adapter;
 
 import android.content.Context;
-import android.icu.text.Transliterator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +9,15 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.myprogram.pomodoroClock.R;
-import com.myprogram.pomodoroClock.bean.Item;
+import com.myprogram.pomodoroClock.bean.todo_Items;
 
 import java.util.List;
 
 public class ItemBaseAdapter extends BaseAdapter {
     private Context mContext;
-    private List<Item> mItemList;
+    private List<todo_Items> mItemList;
 
-    public ItemBaseAdapter(Context mContext, List<Item> mItem) {
+    public ItemBaseAdapter(Context mContext, List<todo_Items> mItem) {
         this.mContext = mContext;
         this.mItemList = mItem;
     }
@@ -45,7 +44,7 @@ public class ItemBaseAdapter extends BaseAdapter {
         View mview = LayoutInflater.from(mContext).inflate(R.layout.activity_todo_items, null);
         TextView todo_items_text = mview.findViewById(R.id.todo_items_text);
         CheckBox todo_items_ck = mview.findViewById(R.id.todo_items_ck);
-        Item item = mItemList.get(i);
+        todo_Items item = mItemList.get(i);
         todo_items_text.setText(item.getContent());
         todo_items_ck.setChecked(item.getIsFinished());
         return mview;

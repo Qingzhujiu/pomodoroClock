@@ -3,13 +3,13 @@ package com.myprogram.pomodoroClock.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Item {
+public class todo_Items {
     //任务是否完成
     private boolean isFinished;
     //任务的内容
     private String content;
 
-    public Item(boolean isFinished, String content) {
+    public todo_Items(boolean isFinished, String content) {
         this.isFinished = isFinished;
         this.content = content;
     }
@@ -38,10 +38,10 @@ public class Item {
     }
 
 
-    static public List<Item> getTodoInfo(){
-        List<Item> list = new ArrayList<>();
+    static public List<todo_Items> getTodoInfo(){
+        List<todo_Items> list = new ArrayList<>();
         for (int i=0;i<isFinishedArray.size();i++){
-            Item item = new Item(isFinishedArray.get(i), contentArray.get(i));
+            todo_Items item = new todo_Items(isFinishedArray.get(i), contentArray.get(i));
             list.add(item);
         }
         return list;
