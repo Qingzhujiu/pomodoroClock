@@ -11,6 +11,20 @@
         <entry key="..\:/MyCode/AndroidProject/pomodoroClock/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
         <entry key="..\:/MyCode/AndroidProject/pomodoroClock/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/MyCode/AndroidProject/pomodoroClock/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/drawable/common_background.xml" value="0.3275" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/drawable/common_background2.xml" value="0.3275" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/drawable/ic_list.xml" value="0.3275" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/layout/activity_list_layout.xml" value="0.17806484295845998" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/layout/activity_new_word.xml" value="0.1" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/layout/activity_setting_layout.xml" value="0.17806484295845998" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/layout/activity_statistics_layout.xml" value="0.17806484295845998" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/layout/empty_activity_fragment.xml" value="0.1" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/layout/fragment_list.xml" value="0.1" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/layout/fragment_settings.xml" value="0.1" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/layout/fragment_setttings.xml" value="0.1" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/layout/fragment_statistics.xml" value="0.36614583333333334" />
+        <entry key="..\:/homeworks/Android/pomodoroClock/app/src/main/res/layout/statistics_recyclerview_item.xml" value="0.1" />
       </map>
     </option>
   </component>

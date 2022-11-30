@@ -7,4 +7,9 @@
     <string name="statistics_button_text">数据统计</string>
     <string name="list_button_text">待办</string>
     <string name="tomato_button_text">番茄钟</string>
+    <string name="add_word">addWord</string>
+    <string name="empty_not_saved">Record not save due to it is empty</string>
+    <string name="hint_type">Type…</string>
+    <string name="hint_name">Name…</string>
+    <string name="button_save">Save</string>
 </resources>
