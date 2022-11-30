@@ -10,12 +10,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.myprogram.pomodoroClock.fragment.listFragment;
+import com.myprogram.pomodoroClock.fragment.settingsFragment;
+import com.myprogram.pomodoroClock.fragment.statisticsFragment;
+import com.myprogram.pomodoroClock.fragment.tomatoClockFragment;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Fragment mCurrentFragment;
     private int mCurrentLayoutID;
-    private Fragment mListFragment, mStatisticsFragment, mSettingFragment;
-    private Bundle mListBundle, mStatisticsBundle, mSettingBundle;
-    private RadioButton mListRButton, mStatisticsRButton, mSettingRButton;
+    private Fragment mListFragment, mStatisticsFragment, mSettingFragment,mTomatoClockFragment;
+    private Bundle mListBundle, mStatisticsBundle, mSettingBundle,mTomatoClockBundle;
+    private RadioButton mListRButton, mStatisticsRButton, mSettingRButton,mTomatoClockButton;
     private FragmentManager mFragmentManager;
 
     @Override
@@ -36,12 +46,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mListRButton = findViewById(R.id.list_button);
         mStatisticsRButton = findViewById(R.id.statistics_button);
         mSettingRButton = findViewById(R.id.settings_button);
+        mTomatoClockButton=findViewById(R.id.tomato_clock_button);
     }
 
     void initEvent() {
         mListRButton.setOnClickListener(this);
         mStatisticsRButton.setOnClickListener(this);
         mSettingRButton.setOnClickListener(this);
+        mTomatoClockButton.setOnClickListener(this);
     }
 
     void initFragment() {
@@ -63,6 +75,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSettingBundle = new Bundle();
         mSettingFragment.setArguments(mSettingBundle);
         //transaction.add(R.id.statistics_fragment_container, mStatisticsFragment).commit();
+
+        mTomatoClockFragment = new tomatoClockFragment();
+        mTomatoClockBundle = new Bundle();
+        mTomatoClockFragment.setArguments(mTomatoClockBundle);
+
     }
 
     void showFragment(Fragment fragment) {
@@ -98,6 +115,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mCurrentLayoutID = R.id.settings_fragment_container;
                 showFragment(mSettingFragment);
                 Log.d("Clicked", "setting");
+            }
+            break;
+            case R.id.tomato_clock_button:{
+                mCurrentLayoutID = R.id.tomato_clock_fragment_container;
+                showFragment(mTomatoClockFragment);
+                Log.d("Clicked","tomatoClock");
             }
             break;
             default:

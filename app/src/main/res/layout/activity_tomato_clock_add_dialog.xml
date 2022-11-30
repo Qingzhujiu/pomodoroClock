@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="400dp"
+    android:layout_height="350dp"
+    android:layout_gravity="center"
+    tools:context=".dialog.tomato_clock_add_dialog"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blue1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="添加番茄钟任务"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:paddingLeft="10dp"
+            android:paddingTop="6dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/tomato_clock_dialog_bt_yes"
+                android:layout_width="33dp"
+                android:layout_gravity="center"
+                android:layout_height="33dp"
+                android:background="@drawable/ic_yes"/>
+
+            <Button
+                android:id="@+id/tomato_clock_dialog_bt_no"
+                android:layout_marginLeft="22dp"
+                android:layout_gravity="center"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:background="@drawable/ic_no"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/tomato_clock_dialog_et"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:hint="请输入番茄钟任务"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="设置番茄钟时长"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:gravity="center"/>
+
+    <RadioGroup
+        android:id="@+id/tomato_clock_dialog_rg"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="25分钟" />
+
+        <RadioButton
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="20分钟"/>
+
+        <RadioButton
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="15分钟"/>
+
+        <RadioButton
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="10分钟"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="*注：25分钟为一个标准番茄钟时间"/>
+
+
+</LinearLayout>
