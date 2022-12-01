@@ -6,6 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.sql.Date;
+import java.util.Objects;
 
 // 实体
 @Entity(tableName = "record_table")
@@ -33,9 +34,9 @@ public class Record {
     private int mTimes;
 
     public Record() {
-        IDAlloctor idAlloctor = IDAlloctor.getINSTANCE();
-        this.mId = idAlloctor.getID();
-        this.mSqlDate = null;
+        RecordIDAlloctor recordIdAlloctor = RecordIDAlloctor.getINSTANCE();
+        this.mId = recordIdAlloctor.getID();
+        this.mSqlDate = new Date(System.currentTimeMillis());
         this.mType = "default";
         this.mName = "untitled";
         this.mDuration = 0;
@@ -44,8 +45,8 @@ public class Record {
 
     public Record(@NonNull Date _SqlDate, @NonNull String _Type, @NonNull String _Name,
                   int _Duration, int _Times) {
-        IDAlloctor idAlloctor = IDAlloctor.getINSTANCE();
-        this.mId = idAlloctor.getID();
+        RecordIDAlloctor recordIdAlloctor = RecordIDAlloctor.getINSTANCE();
+        this.mId = recordIdAlloctor.getID();
         this.mSqlDate = _SqlDate;
         this.mType = _Type;
         this.mName = _Name;
@@ -55,8 +56,8 @@ public class Record {
 
     public Record(long _SqlDate, @NonNull String _Type, @NonNull String _Name,
                   int _Duration, int _Times) {
-        IDAlloctor idAlloctor = IDAlloctor.getINSTANCE();
-        this.mId = idAlloctor.getID();
+        RecordIDAlloctor recordIdAlloctor = RecordIDAlloctor.getINSTANCE();
+        this.mId = recordIdAlloctor.getID();
         this.mSqlDate = new Date(_SqlDate);
         this.mType = _Type;
         this.mName = _Name;
@@ -125,5 +126,18 @@ public class Record {
                 ", mDuration=" + mDuration +
                 ", mTimes=" + mTimes +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Record record = (Record) o;
+        return mId == record.mId && mDuration == record.mDuration && mTimes == record.mTimes && mSqlDate.equals(record.mSqlDate) && mType.equals(record.mType) && mName.equals(record.mName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mId, mSqlDate, mType, mName, mDuration, mTimes);
     }
 }
