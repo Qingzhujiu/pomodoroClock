@@ -16,7 +16,7 @@ public class RecordIDAlloctor {
     }
 
     public long getID() {
-        IDcnt++;
+        IDcnt = IDcnt+1;
         return IDcnt;
     }
 }
