@@ -7,6 +7,162 @@
     android:layout_height="match_parent"
     tools:context=".fragment.statisticsFragment">
 
+    <FrameLayout
+        android:id="@+id/statistics_fragment_totalConcentration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:layout_constraintLeft_toLeftOf="@id/statistics_fragment_container"
+        app:layout_constraintTop_toTopOf="@id/statistics_fragment_container">
+
+        <TextView
+            android:id="@+id/statistics_fragment_totalConcentration_textView_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/totalConcentration"
+            android:textSize="16dp" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:id="@+id/statistics_fragment_totalConcentration_textView_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/concentrationTimes"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/statistics_fragment_totalConcentration_textView_times_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/concentrationTimes"
+                android:textSize="24dp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:id="@+id/statistics_fragment_totalConcentration_textView_totalDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/totalDuration"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/statistics_fragment_totalConcentration_textView_totalDuration_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/totalDuration"
+                android:textSize="24dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:id="@+id/statistics_fragment_totalConcentration_textView_perDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/perDuration"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/statistics_fragment_totalConcentration_textView_perDuration_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/perDuration"
+                android:textSize="24dp" />
+
+        </FrameLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/statistics_fragment_dayConcentration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:layout_constraintLeft_toLeftOf="@id/statistics_fragment_container"
+        app:layout_constraintTop_toBottomOf="@id/statistics_fragment_totalConcentration">
+
+        <TextView
+            android:id="@+id/statistics_fragment_dayConcentration_textView_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dayConcentration"
+            android:textSize="16dp" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:id="@+id/statistics_fragment_dayConcentration_textView_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/concentrationTimes"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/statistics_fragment_dayConcentration_textView_times_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/concentrationTimes"
+                android:textSize="24dp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:id="@+id/statistics_fragment_dayConcentration_textView_perDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/dayDuration"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/statistics_fragment_dayConcentration_textView_perDuration_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/dayDuration"
+                android:textSize="24dp" />
+
+        </FrameLayout>
+    </FrameLayout>
+
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/statistics_recyclerView"
@@ -16,7 +172,7 @@
         app:layout_constraintBottom_toBottomOf="@id/statistics_fragment_container"
         app:layout_constraintLeft_toLeftOf="@id/statistics_fragment_container"
         app:layout_constraintRight_toRightOf="@id/statistics_fragment_container"
-        app:layout_constraintTop_toTopOf="@id/statistics_fragment_container"
+        app:layout_constraintTop_toBottomOf="@id/statistics_fragment_dayConcentration"
         tools:listitem="@layout/statistics_recyclerview_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

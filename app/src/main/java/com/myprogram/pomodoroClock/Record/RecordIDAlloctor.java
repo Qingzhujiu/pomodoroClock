@@ -1,16 +1,16 @@
 package com.myprogram.pomodoroClock.Record;
 
-public class IDAlloctor {
+public class RecordIDAlloctor {
     private static long IDcnt;
-    private static volatile IDAlloctor INSTANCE;
+    private static volatile RecordIDAlloctor INSTANCE;
 
-    private IDAlloctor() {
+    private RecordIDAlloctor() {
         IDcnt = 0;
     }
 
-    static IDAlloctor getINSTANCE() {
+    public static RecordIDAlloctor getINSTANCE() {
         if (INSTANCE == null) {
-            INSTANCE = new IDAlloctor();
+            INSTANCE = new RecordIDAlloctor();
         }
         return INSTANCE;
     }

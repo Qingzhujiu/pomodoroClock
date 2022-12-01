@@ -18,6 +18,6 @@ public interface RecordDao {
     @Query("DELETE FROM record_table")
     void deleteAll();
 
-    @Query("SELECT * FROM record_table ORDER BY date ASC")
+    @Query("SELECT * FROM record_table ORDER BY record_id ASC")
     LiveData<List<Record>> getRecords();
 }
