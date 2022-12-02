@@ -5,19 +5,25 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 // 实体
 @Entity(tableName = "record_table")
 public class Record {
+    static class IdAlloctor {
+        public static long getID() {
+            return System.currentTimeMillis();
+        }
+    }
+
     @PrimaryKey
     @ColumnInfo(name = "record_id")
     private long mId;
 
     @NonNull
     @ColumnInfo(name = "date")
-    private Date mSqlDate;
+    private Date mDate;
 
     @NonNull
     @ColumnInfo(name = "type")
@@ -34,9 +40,8 @@ public class Record {
     private int mTimes;
 
     public Record() {
-        RecordIDAlloctor recordIdAlloctor = RecordIDAlloctor.getINSTANCE();
-        this.mId = recordIdAlloctor.getID();
-        this.mSqlDate = new Date(System.currentTimeMillis());
+        this.mId = -1;
+        this.mDate = new Date(System.currentTimeMillis());
         this.mType = "default";
         this.mName = "untitled";
         this.mDuration = 0;
@@ -45,9 +50,8 @@ public class Record {
 
     public Record(@NonNull Date _SqlDate, @NonNull String _Type, @NonNull String _Name,
                   int _Duration, int _Times) {
-        RecordIDAlloctor recordIdAlloctor = RecordIDAlloctor.getINSTANCE();
-        this.mId = recordIdAlloctor.getID();
-        this.mSqlDate = _SqlDate;
+        this.mId = IdAlloctor.getID();
+        this.mDate = _SqlDate;
         this.mType = _Type;
         this.mName = _Name;
         this.mDuration = _Duration;
@@ -56,9 +60,8 @@ public class Record {
 
     public Record(long _SqlDate, @NonNull String _Type, @NonNull String _Name,
                   int _Duration, int _Times) {
-        RecordIDAlloctor recordIdAlloctor = RecordIDAlloctor.getINSTANCE();
-        this.mId = recordIdAlloctor.getID();
-        this.mSqlDate = new Date(_SqlDate);
+        this.mId = IdAlloctor.getID();
+        this.mDate = new Date(_SqlDate);
         this.mType = _Type;
         this.mName = _Name;
         this.mDuration = _Duration;
@@ -74,12 +77,12 @@ public class Record {
     }
 
     @NonNull
-    public Date getSqlDate() {
-        return mSqlDate;
+    public Date getDate() {
+        return mDate;
     }
 
-    public void setSqlDate(@NonNull Date _SqlDate) {
-        this.mSqlDate = _SqlDate;
+    public void setDate(@NonNull Date _Date) {
+        this.mDate = _Date;
     }
 
     @NonNull
@@ -104,6 +107,16 @@ public class Record {
         return mDuration;
     }
 
+    public String getDurationStr() {
+        String str = "";
+        int h = this.mDuration / 60;
+        if (h > 0)
+            str = str + h + "时";
+        int m = this.mDuration % 60;
+        str = str + m + "分";
+        return str;
+    }
+
     public void setDuration(int _Duration) {
         this.mDuration = _Duration;
     }
@@ -120,7 +133,7 @@ public class Record {
     public String toString() {
         return "Record{" +
                 "mId=" + mId +
-                ", mSqlDate=" + mSqlDate +
+                ", mSqlDate=" + mDate +
                 ", mType='" + mType + '\'' +
                 ", mName='" + mName + '\'' +
                 ", mDuration=" + mDuration +
@@ -133,11 +146,11 @@ public class Record {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Record record = (Record) o;
-        return mId == record.mId && mDuration == record.mDuration && mTimes == record.mTimes && mSqlDate.equals(record.mSqlDate) && mType.equals(record.mType) && mName.equals(record.mName);
+        return mId == record.mId && mDuration == record.mDuration && mTimes == record.mTimes && mDate.equals(record.mDate) && mType.equals(record.mType) && mName.equals(record.mName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mId, mSqlDate, mType, mName, mDuration, mTimes);
+        return Objects.hash(mId, mDate, mType, mName, mDuration, mTimes);
     }
 }

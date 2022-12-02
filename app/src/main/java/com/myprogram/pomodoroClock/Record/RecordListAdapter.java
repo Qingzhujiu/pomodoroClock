@@ -33,7 +33,7 @@ public class RecordListAdapter extends ListAdapter<Record, RecordViewHolder> {
         @Override
         public boolean areContentsTheSame(@NonNull Record oldItem, @NonNull Record newItem) {
             return oldItem.getId() == newItem.getId()
-                    && oldItem.getSqlDate().equals(newItem.getSqlDate())
+                    && oldItem.getDate().equals(newItem.getDate())
                     && oldItem.getType().equals(newItem.getType())
                     && oldItem.getName().equals(newItem.getName())
                     && oldItem.getDuration() == newItem.getDuration()

@@ -10,6 +10,12 @@ import java.util.Objects;
 @Entity(tableName = "todo_table")
 
 public class ToDo {
+    static class IdAlloctor {
+        static public long getID() {
+            return System.currentTimeMillis();
+        }
+    }
+
     @PrimaryKey
     @ColumnInfo(name = "todo_id")
     private long mId;
@@ -47,22 +53,19 @@ public class ToDo {
     }
 
     public ToDo() {
-        ToDoIDAlloctor toDoIdAlloctor = ToDoIDAlloctor.getINSTANCE();
-        this.mId = toDoIdAlloctor.getID();
+        this.mId = -1;
         this.mName = "untitled";
         this.isFinished = false;
     }
 
     public ToDo(@NonNull String _Name, boolean _IsDone) {
-        ToDoIDAlloctor toDoIDAlloctor = ToDoIDAlloctor.getINSTANCE();
-        this.mId = toDoIDAlloctor.getID();
+        this.mId = IdAlloctor.getID();
         this.mName = _Name;
         this.isFinished = _IsDone;
     }
 
     public ToDo(@NonNull String _Name) {
-        ToDoIDAlloctor toDoIDAlloctor = ToDoIDAlloctor.getINSTANCE();
-        this.mId = toDoIDAlloctor.getID();
+        this.mId = IdAlloctor.getID();
         this.mName = _Name;
         this.isFinished = false;
     }
