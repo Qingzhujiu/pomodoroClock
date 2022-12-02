@@ -12,8 +12,8 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="ac6dc2f1-5c85-4514-9b2b-f39ddaf627b2">
-      <console name="Connection" type="STANDARD" schema="" session="Main" />
+    <connection id="951ce2f2-f029-4c95-9f8c-e27b955e9d06">
+      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[select * from record_table order by record_id asc]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -25,13 +25,21 @@
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
   </component>
+  <component name="DBNavigator.Project.MethodExecutionManager">
+    <method-browser />
+    <execution-history>
+      <group-entries value="true" />
+      <execution-inputs />
+    </execution-history>
+    <argument-values-cache />
+  </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="ac6dc2f1-5c85-4514-9b2b-f39ddaf627b2" active="true" signed="true">
+      <connection id="951ce2f2-f029-4c95-9f8c-e27b955e9d06" active="true" signed="true">
         <database>
           <name value="Connection" />
           <description value="" />
@@ -47,6 +55,8 @@
           <database value="" />
           <files>
             <file path="D:\homeworks\Android\sqlite\record_database" schema="main" />
+            <file path="D:\homeworks\Android\sqlite\record_database-shm" schema="record_database-shm" />
+            <file path="D:\homeworks\Android\sqlite\record_database-wal" schema="record_database-wal" />
           </files>
           <type value="NONE" />
           <user value="" />

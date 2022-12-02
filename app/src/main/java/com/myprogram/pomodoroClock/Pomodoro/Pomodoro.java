@@ -11,8 +11,12 @@ import java.util.Objects;
 @Entity(tableName = "pomodoro_table")
 
 public class Pomodoro {
+    static class IdAlloctor{
+        static public  long getID(){
+            return System.currentTimeMillis();
+        }
+    }
     @PrimaryKey
-    @NonNull
     @ColumnInfo(name = "pomodoro_id")
     private long mId;
 
@@ -36,7 +40,7 @@ public class Pomodoro {
     private int mbgImg;
 
     public Pomodoro() {
-        this.mId = PomodoroIDAlloctor.getINSTANCE().getID();
+        this.mId = -1;
         this.mName = "untitled";
         this.mDuration = 0;
         this.mTime = 0;
@@ -45,8 +49,9 @@ public class Pomodoro {
         this.mbgImg = 0;
     }
 
+    @Ignore
     public Pomodoro(@NonNull String mName, int mDuration, int mTime, int mCount, int mbgSound, int mbgImg) {
-        this.mId = PomodoroIDAlloctor.getINSTANCE().getID();
+        this.mId = IdAlloctor.getID();
         this.mName = mName;
         this.mDuration = mDuration;
         this.mTime = mTime;
@@ -113,6 +118,7 @@ public class Pomodoro {
     }
 
     @Override
+    @NonNull
     public String toString() {
         return "Pomodoro{" +
                 "mId=" + mId +
