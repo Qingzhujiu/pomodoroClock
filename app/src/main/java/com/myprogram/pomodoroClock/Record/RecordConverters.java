@@ -2,7 +2,7 @@ package com.myprogram.pomodoroClock.Record;
 
 import androidx.room.TypeConverter;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class RecordConverters {
     @TypeConverter
