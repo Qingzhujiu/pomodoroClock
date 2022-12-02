@@ -38,12 +38,12 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/todo_list"
+            android:id="@+id/todo_list_lv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:divider="@null"
             android:dividerHeight="5dp"
-            android:listSelector="@color/transparent" />
+            android:listSelector="@color/transparent"/>
 
     </LinearLayout>
 

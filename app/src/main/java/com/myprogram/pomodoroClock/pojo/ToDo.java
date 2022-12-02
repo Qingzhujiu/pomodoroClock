@@ -1,12 +1,13 @@
 package com.myprogram.pomodoroClock.pojo;
 
-public class TodoInfo {
+public class ToDo {
+
     //任务是否完成
     private boolean isFinished;
     //任务的内容
     private String content;
 
-    public TodoInfo(boolean isFinished, String content) {
+    public ToDo(boolean isFinished, String content) {
         this.isFinished = isFinished;
         this.content = content;
     }

@@ -1,29 +1,13 @@
 package com.myprogram.pomodoroClock.bean;
 
+import com.myprogram.pomodoroClock.pojo.ToDo;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class todo_Items {
-    //任务是否完成
-    private boolean isFinished;
-    //任务的内容
-    private String content;
-
-    public todo_Items(boolean isFinished, String content) {
-        this.isFinished = isFinished;
-        this.content = content;
-    }
-
-    public boolean getIsFinished() {
-        return isFinished;
-    }
-
-    public String getContent() {
-        return content;
-    }
+public class ToDoListGenerator {
 
     //测试数据
-
     private static List<Boolean> isFinishedArray;
     private static List<String> contentArray;
     static {
@@ -38,11 +22,11 @@ public class todo_Items {
     }
 
 
-    static public List<todo_Items> getTodoInfo(){
-        List<todo_Items> list = new ArrayList<>();
+    static public List<ToDo> getTodoInfo(){
+        List<ToDo> list = new ArrayList<>();
         for (int i=0;i<isFinishedArray.size();i++){
-            todo_Items item = new todo_Items(isFinishedArray.get(i), contentArray.get(i));
-            list.add(item);
+            ToDo todo = new ToDo(isFinishedArray.get(i), contentArray.get(i));
+            list.add(todo);
         }
         return list;
     }

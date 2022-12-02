@@ -8,7 +8,7 @@ public class IDAlloctor {
         IDcnt = 0;
     }
 
-    static IDAlloctor getINSTANCE() {
+    public static IDAlloctor getINSTANCE() {
         if (INSTANCE == null) {
             INSTANCE = new IDAlloctor();
         }

@@ -11,16 +11,20 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.myprogram.pomodoroClock.R;
+import com.myprogram.pomodoroClock.Record.RecordViewModel;
 import com.myprogram.pomodoroClock.adapter.ItemBaseAdapter;
-import com.myprogram.pomodoroClock.bean.todo_Items;
+import com.myprogram.pomodoroClock.bean.ToDoListGenerator;
 import com.myprogram.pomodoroClock.dialog.todo_insert_dialog;
+import com.myprogram.pomodoroClock.pojo.ToDo;
 
 import java.util.List;
 
 public class listFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     View view;
+    RecordViewModel recordViewModel;
 
     @Nullable
     @Override
@@ -28,18 +32,21 @@ public class listFragment extends Fragment implements View.OnClickListener, Adap
         view = inflater.inflate(R.layout.fragment_list, container, false);
         Bundle bundle = getArguments();
 
+        //
+        recordViewModel = new ViewModelProvider(this).get(RecordViewModel.class);
+        //
 
-        ListView todo_list = view.findViewById(R.id.todo_list);
+        ListView todo_list_lv = view.findViewById(R.id.todo_list_lv);
         ImageButton todo_layout_bt = view.findViewById(R.id.todo_layout_bt);
 
         todo_layout_bt.setOnClickListener(this);
 
         //获取数据
-        List<todo_Items> todoInfo = todo_Items.getTodoInfo();
+        List<ToDo> todoInfo = ToDoListGenerator.getTodoInfo();
         //构造一个适配器
         ItemBaseAdapter itemBaseAdapter = new ItemBaseAdapter(view.getContext(),todoInfo);
-        todo_list.setAdapter(itemBaseAdapter);
-        todo_list.setOnItemSelectedListener(this);
+        todo_list_lv.setAdapter(itemBaseAdapter);
+        todo_list_lv.setOnItemSelectedListener(this);
 
         return view;
     }
@@ -52,7 +59,7 @@ public class listFragment extends Fragment implements View.OnClickListener, Adap
     }
 
     private void showDialog(){
-        todo_insert_dialog todo_insert_dialog = new todo_insert_dialog(view.getContext());
+        todo_insert_dialog todo_insert_dialog = new todo_insert_dialog(view.getContext(), recordViewModel);
         todo_insert_dialog.show();
 
     }
