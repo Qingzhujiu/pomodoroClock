@@ -1,6 +1,7 @@
 package com.myprogram.pomodoroClock.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import com.myprogram.pomodoroClock.Record.Record;
 import com.myprogram.pomodoroClock.Record.RecordListAdapter;
 import com.myprogram.pomodoroClock.Record.RecordViewModel;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class statisticsFragment extends Fragment {
@@ -38,7 +41,7 @@ public class statisticsFragment extends Fragment {
         TextView totalDurationTV = view.findViewById(R.id.statistics_fragment_totalConcentration_textView_totalDuration_value);
         TextView totalPerDurationTV = view.findViewById(R.id.statistics_fragment_totalConcentration_textView_perDuration_value);
         TextView dayTimesTV = view.findViewById(R.id.statistics_fragment_dayConcentration_textView_times_value);
-        TextView dayPerDurationTV = view.findViewById(R.id.statistics_fragment_dayConcentration_textView_perDuration_value);
+        TextView daySumDurationTV = view.findViewById(R.id.statistics_fragment_dayConcentration_textView_perDuration_value);
         RecyclerView recyclerView = view.findViewById(R.id.statistics_recyclerView);
         CalendarView calendarView = view.findViewById(R.id.statistics_fragment_calendar_chooser);
         FloatingActionButton fab = view.findViewById(R.id.fab);
@@ -49,32 +52,71 @@ public class statisticsFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         // 绑定数据
-        mRecordViewModel.getAllRecords().observe(getViewLifecycleOwner(), adapter::submitList);
         mRecordViewModel.getSumDuration().observe(getViewLifecycleOwner(), integer -> {
-            String str = "";
-            int t = integer;
-            int h = t / 60, m = t % 60;
-            if (h != 0)
-                str = h + "时";
-            str += m + "分";
-            totalDurationTV.setText(str);
+            // 显示总时长
+            totalDurationTV.setText(integerToTime(integer));
             mRecordViewModel.getSumTimes().observe(getViewLifecycleOwner(), times -> {
-                totalTimesTV.setText(times.toString());
-                int perT = integer / times;
-                String perStr = "";
-                int perH = perT / 60, perM = perT % 60;
-                if (perH != 0)
-                    perStr = perH + "时";
-                perStr += perM + "分";
-                totalPerDurationTV.setText(perStr);
+                // 显示总次数
+                try {
+                    totalTimesTV.setText(times.toString());
+                } catch (Exception e) {
+                    totalTimesTV.setText("0");
+                    e.printStackTrace();
+                }
+                // 显示平均每次时长
+                totalPerDurationTV.setText(integerToTime(integer / times));
             });
         });
+        Calendar calendar1 = Calendar.getInstance();
+        Calendar calendar2 = Calendar.getInstance();
+        calendar1.clear();
+        calendar1.set(calendar2.get(Calendar.YEAR), calendar2.get(Calendar.MONTH),
+                calendar2.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+        long begin = calendar1.getTimeInMillis();
+        calendar1.clear();
+        calendar1.set(calendar2.get(Calendar.YEAR), calendar2.get(Calendar.MONTH),
+                calendar2.get(Calendar.DAY_OF_MONTH), 23, 59, 59);
+        long end = calendar1.getTimeInMillis();
+        mRecordViewModel.getDayRecords(begin, end).observe(getViewLifecycleOwner(), adapter::submitList);
+        mRecordViewModel.getDaySumDuration(begin, end).observe(getViewLifecycleOwner(), integer -> {
+            daySumDurationTV.setText(integerToTime(integer));
+        });
+        mRecordViewModel.getDaySumTimes(begin, end).observe(getViewLifecycleOwner(), times -> {
+            try {
+                dayTimesTV.setText(times.toString());
+            } catch (Exception e) {
+                dayTimesTV.setText("0");
+                e.printStackTrace();
+            }
+        });
         // 绑定监听器
-        calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> Toast.makeText(
-                getContext().getApplicationContext(),
-                "year: " + year + ", month: " + month + ", dayOfMonth" + dayOfMonth,
-                Toast.LENGTH_LONG
-        ).show());
+        calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
+            Calendar calendar = Calendar.getInstance();
+            calendar.clear();
+            calendar.set(year, month, dayOfMonth, 0, 0, 0);
+            long begin1 = calendar.getTimeInMillis();
+            calendar.clear();
+            calendar.set(year, month, dayOfMonth, 23, 59, 59);
+            long end1 = calendar.getTimeInMillis();
+            mRecordViewModel.getDayRecords(begin1, end1).observe(getViewLifecycleOwner(), adapter::submitList);
+            mRecordViewModel.getDaySumDuration(begin1, end1).observe(getViewLifecycleOwner(), integer -> {
+                daySumDurationTV.setText(
+                        integerToTime(integer));
+            });
+            mRecordViewModel.getDaySumTimes(begin1, end1).observe(getViewLifecycleOwner(), times -> {
+                try {
+                    dayTimesTV.setText(times.toString());
+                } catch (Exception e) {
+                    dayTimesTV.setText("0");
+                    e.printStackTrace();
+                }
+            });
+            Toast.makeText(
+                    getContext().getApplicationContext(),
+                    "该日无专注记录",
+                    Toast.LENGTH_LONG
+            ).show();
+        });
         fab.setOnClickListener(nView -> {
             long date = System.currentTimeMillis();
             int duration = random.nextInt(100);
@@ -89,5 +131,17 @@ public class statisticsFragment extends Fragment {
                     Toast.LENGTH_LONG).show();
         });
         return view;
+    }
+
+    String integerToTime(Integer integer) {
+        String str = "";
+        if (integer == null)
+            integer = 0;
+        int t = integer;
+        int h = t / 60, m = t % 60;
+        if (h != 0)
+            str = h + "时";
+        str += m + "分";
+        return str;
     }
 }

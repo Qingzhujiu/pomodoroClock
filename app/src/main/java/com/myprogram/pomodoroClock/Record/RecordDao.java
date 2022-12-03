@@ -21,10 +21,10 @@ public interface RecordDao {
     void deleteAll();
 
     @Query("SELECT * FROM record_table ORDER BY record_id ASC")
-    LiveData<List<Record>> getRecordsLD();
+    LiveData<List<Record>> getRecords();
 
     @Query("SELECT * FROM record_table WHERE date >= :begin AND date <= :end ORDER BY record_id ASC")
-    LiveData<List<Record>> getRecordsLD(long begin, long end);
+    LiveData<List<Record>> getRecords(long begin, long end);
 
     @Query("SELECT SUM(times) FROM record_table")
     LiveData<Integer> getSumTimes();

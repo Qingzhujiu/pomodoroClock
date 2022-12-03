@@ -13,14 +13,15 @@ public class RecordViewModel extends AndroidViewModel {
 
     private RecordRepository mRepository;
     private final LiveData<List<Record>> mAllRecords;
-    private final LiveData<List<Record>> mDayRecords;
-    private final LiveData<Integer> mSumTimes, mSumDuration, mDaySumTimes, mDaySumDuration;
+    private LiveData<List<Record>> mDayRecords;
+    private final LiveData<Integer> mSumTimes, mSumDuration;
+    private LiveData<Integer> mDaySumTimes, mDaySumDuration;
 
     public RecordViewModel(@NonNull Application application) {
         super(application);
         mRepository = new RecordRepository(application);
         mAllRecords = mRepository.getAllRecords();
-        mDayRecords = mRepository.getDayRecords();
+        mDayRecords = mRepository.getDayRecords(0, 0);
         mSumTimes = mRepository.getSumTimes();
         mSumDuration = mRepository.getSumDuration();
         mDaySumTimes = mRepository.getDaySumTimes(0, 0);
@@ -31,7 +32,8 @@ public class RecordViewModel extends AndroidViewModel {
         return mAllRecords;
     }
 
-    public LiveData<List<Record>> getDayRecords() {
+    public LiveData<List<Record>> getDayRecords(long begin, long end) {
+        mDayRecords = mRepository.getDayRecords(begin, end);
         return mDayRecords;
     }
 
@@ -43,11 +45,13 @@ public class RecordViewModel extends AndroidViewModel {
         return mSumDuration;
     }
 
-    public LiveData<Integer> getDaySumTimes() {
+    public LiveData<Integer> getDaySumTimes(long begin, long end) {
+        mDaySumTimes = mRepository.getDaySumTimes(begin, end);
         return mDaySumTimes;
     }
 
-    public LiveData<Integer> getDaySumDuration() {
+    public LiveData<Integer> getDaySumDuration(long begin, long end) {
+        mDaySumDuration = mRepository.getDaySumDuration(begin, end);
         return mDaySumDuration;
     }
 

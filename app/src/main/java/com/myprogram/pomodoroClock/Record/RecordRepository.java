@@ -10,15 +10,15 @@ import java.util.List;
 public class RecordRepository {
     private final RecordDao mRecordDao;
     private final LiveData<List<Record>> mAllRecords;
-    private final LiveData<List<Record>> mDayRecords;
+    private LiveData<List<Record>> mDayRecords;
     private final LiveData<Integer> mSumTimes, mSumDuration;
     private LiveData<Integer> mDaySumTimes, mDaySumDuration;
 
     RecordRepository(Application application) {
         RecordRoomDatabase db = RecordRoomDatabase.getDatabase(application);
         mRecordDao = db.RecordDao();
-        mAllRecords = mRecordDao.getRecordsLD();
-        mDayRecords = mRecordDao.getRecordsLD(0, 0);
+        mAllRecords = mRecordDao.getRecords();
+        mDayRecords = mRecordDao.getRecords(0, 0);
         mSumTimes = mRecordDao.getSumTimes();
         mSumDuration = mRecordDao.getSumDuration();
         mDaySumTimes = mRecordDao.getSumTimes(0, 0);
@@ -47,7 +47,8 @@ public class RecordRepository {
         return mAllRecords;
     }
 
-    LiveData<List<Record>> getDayRecords() {
+    LiveData<List<Record>> getDayRecords(long begin, long end) {
+        mDayRecords = mRecordDao.getRecords(begin, end);
         return mDayRecords;
     }
 
