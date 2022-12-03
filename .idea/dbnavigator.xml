@@ -12,12 +12,15 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="951ce2f2-f029-4c95-9f8c-e27b955e9d06">
-      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[select * from record_table order by record_id asc]]></console>
+    <connection id="ea8d366b-1624-453e-bfb1-6913a184084d">
+      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[select sum(duration) from record_table]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="951ce2f2-f029-4c95-9f8c-e27b955e9d06" dataset="main.android_metadata" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -39,7 +42,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="951ce2f2-f029-4c95-9f8c-e27b955e9d06" active="true" signed="true">
+      <connection id="ea8d366b-1624-453e-bfb1-6913a184084d" active="true" signed="true">
         <database>
           <name value="Connection" />
           <description value="" />

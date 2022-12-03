@@ -15,7 +15,7 @@
     <string name="totalConcentration">累计专注</string>
     <string name="concentrationTimes">次数</string>
     <string name="totalDuration">总时长</string>
-    <string name="perDuration">日均时长</string>
+    <string name="perDuration">平均时长</string>
     <string name="dayConcentration">当日专注</string>
     <string name="dayDuration">当日时长</string>
 </resources>

@@ -30,8 +30,10 @@
                 app:layout_constraintTop_toTopOf="@id/statistics_fragment_totalConcentration" />
 
             <FrameLayout
+                android:id="@+id/statistics_fragment_totalConcentration_times_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/statistics_fragment_totalConcentration_duration_frame"
                 app:layout_constraintStart_toStartOf="@id/statistics_fragment_totalConcentration"
                 app:layout_constraintTop_toBottomOf="@id/statistics_fragment_totalConcentration_textView_title">
 
@@ -55,6 +57,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/statistics_fragment_totalConcentration_duration_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@id/statistics_fragment_totalConcentration"
@@ -80,9 +83,11 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/statistics_fragment_totalConcentration_perDuration_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@id/statistics_fragment_totalConcentration"
+                app:layout_constraintStart_toEndOf="@id/statistics_fragment_totalConcentration_duration_frame"
                 app:layout_constraintTop_toBottomOf="@id/statistics_fragment_totalConcentration_textView_title">
 
                 <TextView
@@ -132,8 +137,10 @@
                 app:layout_constraintTop_toTopOf="@id/statistics_fragment_dayConcentration" />
 
             <FrameLayout
+                android:id="@+id/statistics_fragment_dayConcentration_times_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/statistics_fragment_dayConcentration_duration_frame"
                 app:layout_constraintStart_toStartOf="@id/statistics_fragment_dayConcentration"
                 app:layout_constraintTop_toBottomOf="@id/statistics_fragment_dayConcentration_textView_title">
 
@@ -157,9 +164,11 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/statistics_fragment_dayConcentration_duration_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@id/statistics_fragment_dayConcentration"
+                app:layout_constraintStart_toEndOf="@id/statistics_fragment_dayConcentration_times_frame"
                 app:layout_constraintTop_toBottomOf="@id/statistics_fragment_dayConcentration_textView_title">
 
                 <TextView
