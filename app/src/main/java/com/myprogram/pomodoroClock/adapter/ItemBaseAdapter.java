@@ -9,15 +9,15 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.myprogram.pomodoroClock.R;
-import com.myprogram.pomodoroClock.bean.todo_Items;
+import com.myprogram.pomodoroClock.pojo.ToDo;
 
 import java.util.List;
 
 public class ItemBaseAdapter extends BaseAdapter {
     private Context mContext;
-    private List<todo_Items> mItemList;
+    private List<ToDo> mItemList;
 
-    public ItemBaseAdapter(Context mContext, List<todo_Items> mItem) {
+    public ItemBaseAdapter(Context mContext, List<ToDo> mItem) {
         this.mContext = mContext;
         this.mItemList = mItem;
     }
@@ -40,13 +40,15 @@ public class ItemBaseAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         //根据布局文件生成转换视图对象
+
         //先获取该视图
         View mview = LayoutInflater.from(mContext).inflate(R.layout.activity_todo_items, null);
+
         TextView todo_items_text = mview.findViewById(R.id.todo_items_text);
         CheckBox todo_items_ck = mview.findViewById(R.id.todo_items_ck);
-        todo_Items item = mItemList.get(i);
+        ToDo item = mItemList.get(i);
         todo_items_text.setText(item.getContent());
-        todo_items_ck.setChecked(item.getIsFinished());
+        todo_items_ck.setChecked(item.isFinished());
         return mview;
     }
 }

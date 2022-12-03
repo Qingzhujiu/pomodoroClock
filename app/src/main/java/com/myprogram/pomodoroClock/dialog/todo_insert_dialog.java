@@ -1,35 +1,38 @@
 package com.myprogram.pomodoroClock.dialog;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.myprogram.pomodoroClock.R;
-import com.myprogram.pomodoroClock.pojo.TodoInfo;
+import com.myprogram.pomodoroClock.Record.Record;
+import com.myprogram.pomodoroClock.Record.RecordViewModel;
+import com.myprogram.pomodoroClock.pojo.ToDo;
 
 public class todo_insert_dialog extends Dialog implements View.OnClickListener {
 
     Button todo_dialog_bt;
     EditText todo_dialog_et;
+    RecordViewModel mRecordViewModel;
 
 
-   public todo_insert_dialog(Context context){
+   public todo_insert_dialog(Context context, RecordViewModel recordViewModel){
        super(context);
+       //
+       mRecordViewModel = recordViewModel;
+       //
    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_insert_dialog);
+
         todo_dialog_bt = findViewById(R.id.todo_dialog_bt);
         todo_dialog_et = findViewById(R.id.todo_dialog_et);
         todo_dialog_bt.setOnClickListener(this);
@@ -67,9 +70,11 @@ public class todo_insert_dialog extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (R.id.todo_layout_bt==view.getId()){
-            TodoInfo todoInfo = new TodoInfo(false,todo_dialog_et.getText().toString());
-            this.cancel();
+        if (R.id.todo_dialog_bt==view.getId()){
+            ToDo toDo = new ToDo(false,todo_dialog_et.getText().toString());
+            Record record = new Record();
+            mRecordViewModel.insert(record);
+
             //将该信息存入数据库中
             //待办
 

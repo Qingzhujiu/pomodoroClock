@@ -4,10 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bean.tomato_clock_items">
-
-    <Button
+    tools:context=".items.tomato_clock_items">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="80dp"
+        android:background="@drawable/common_selector"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tomato_clock_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="番茄钟名称"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tomato_clock_item_time"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="番茄钟时长"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/tomato_clock_item_start"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="开始"
+            android:textSize="18sp"
+            android:layout_marginRight="15dp"
+            android:background="@color/transparent"/>
+    </LinearLayout>
 
 </LinearLayout>
