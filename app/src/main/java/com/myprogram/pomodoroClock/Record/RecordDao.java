@@ -2,6 +2,7 @@ package com.myprogram.pomodoroClock.Record;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -19,6 +20,9 @@ public interface RecordDao {
 
     @Query("DELETE FROM record_table")
     void deleteAll();
+
+    @Delete
+    void delete(Record record);
 
     @Query("SELECT * FROM record_table ORDER BY record_id ASC")
     LiveData<List<Record>> getRecords();

@@ -2,7 +2,9 @@ package com.myprogram.pomodoroClock.fragment;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
@@ -11,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprogram.pomodoroClock.R;
 import com.myprogram.pomodoroClock.Record.Record;
+import com.myprogram.pomodoroClock.Record.RecordDialog;
 import com.myprogram.pomodoroClock.Record.RecordListAdapter;
 import com.myprogram.pomodoroClock.Record.RecordViewModel;
 
@@ -49,6 +54,7 @@ public class statisticsFragment extends Fragment {
         mRecordViewModel = new ViewModelProvider(this).get(RecordViewModel.class);
         //
         final RecordListAdapter adapter = new RecordListAdapter(new RecordListAdapter.RecordDiff());
+        adapter.setFm(getParentFragmentManager());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         // 绑定数据
@@ -67,6 +73,8 @@ public class statisticsFragment extends Fragment {
                 totalPerDurationTV.setText(integerToTime(integer / times));
             });
         });
+
+
         Calendar calendar1 = Calendar.getInstance();
         Calendar calendar2 = Calendar.getInstance();
         calendar1.clear();
@@ -111,12 +119,8 @@ public class statisticsFragment extends Fragment {
                     e.printStackTrace();
                 }
             });
-            Toast.makeText(
-                    getContext().getApplicationContext(),
-                    "该日无专注记录",
-                    Toast.LENGTH_LONG
-            ).show();
         });
+
         fab.setOnClickListener(nView -> {
             long date = System.currentTimeMillis();
             int duration = random.nextInt(100);
@@ -125,10 +129,10 @@ public class statisticsFragment extends Fragment {
             String name = "TestName" + (random.nextInt(200) - 100);
             Record record = new Record(date, type, name, duration, times);
             mRecordViewModel.insert(record);
-            Toast.makeText(
-                    this.getContext().getApplicationContext(),
-                    R.string.empty_not_saved,
-                    Toast.LENGTH_LONG).show();
+//            Toast.makeText(
+//                    this.getContext().getApplicationContext(),
+//                    R.string.empty_not_saved,
+//                    Toast.LENGTH_LONG).show();
         });
         return view;
     }
@@ -143,5 +147,9 @@ public class statisticsFragment extends Fragment {
             str = h + "时";
         str += m + "分";
         return str;
+    }
+
+    public void RecordDelete(Record record) {
+        mRecordViewModel.delete(record);
     }
 }

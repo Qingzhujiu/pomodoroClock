@@ -58,4 +58,8 @@ public class RecordViewModel extends AndroidViewModel {
     public void insert(Record record) {
         mRepository.insert(record);
     }
+
+    public void delete(Record record) {
+        mRepository.delete(record);
+    }
 }
