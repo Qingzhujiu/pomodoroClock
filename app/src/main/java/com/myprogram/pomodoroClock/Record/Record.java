@@ -5,12 +5,13 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 // 实体
 @Entity(tableName = "record_table")
-public class Record {
+public class Record implements Serializable {
     static class IdAlloctor {
         public static long getID() {
             return System.currentTimeMillis();

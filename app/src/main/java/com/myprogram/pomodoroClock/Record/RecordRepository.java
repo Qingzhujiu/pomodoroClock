@@ -57,4 +57,10 @@ public class RecordRepository {
             mRecordDao.insert(record);
         });
     }
+
+    void delete(Record record) {
+        RecordRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mRecordDao.delete(record);
+        });
+    }
 }

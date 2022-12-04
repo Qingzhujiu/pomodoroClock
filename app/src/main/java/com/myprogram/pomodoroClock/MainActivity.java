@@ -15,18 +15,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.myprogram.pomodoroClock.Record.Record;
+import com.myprogram.pomodoroClock.Record.RecordDialog;
 import com.myprogram.pomodoroClock.fragment.listFragment;
 import com.myprogram.pomodoroClock.fragment.settingsFragment;
 import com.myprogram.pomodoroClock.fragment.statisticsFragment;
 import com.myprogram.pomodoroClock.fragment.tomatoClockFragment;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, RecordDialog.RecordDialogListener {
     private Fragment mCurrentFragment;
-    private int mCurrentLayoutID;
-    private Fragment mListFragment, mStatisticsFragment, mSettingFragment,mTomatoClockFragment;
-    private Bundle mListBundle, mStatisticsBundle, mSettingBundle,mTomatoClockBundle;
-    private RadioButton mListRButton, mStatisticsRButton, mSettingRButton,mTomatoClockButton;
+    private Fragment mListFragment, mStatisticsFragment, mSettingFragment, mTomatoClockFragment;
+    private Bundle mListBundle, mStatisticsBundle, mSettingBundle, mTomatoClockBundle;
+    private RadioButton mListRButton, mStatisticsRButton, mSettingRButton, mTomatoClockButton;
     private FragmentManager mFragmentManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mListRButton = findViewById(R.id.list_button);
         mStatisticsRButton = findViewById(R.id.statistics_button);
         mSettingRButton = findViewById(R.id.settings_button);
-        mTomatoClockButton=findViewById(R.id.tomato_clock_button);
+        mTomatoClockButton = findViewById(R.id.tomato_clock_button);
     }
 
     void initEvent() {
@@ -100,27 +102,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int selected = view.getId();
         switch (selected) {
             case R.id.list_button: {
-                mCurrentLayoutID = R.id.list_fragment_container;
                 showFragment(mListFragment);
                 Log.d("Clicked", "list");
             }
             break;
             case R.id.statistics_button: {
-                mCurrentLayoutID = R.id.statistics_fragment_container;
                 showFragment(mStatisticsFragment);
                 Log.d("Clicked", "statistics");
             }
             break;
             case R.id.settings_button: {
-                mCurrentLayoutID = R.id.settings_fragment_container;
                 showFragment(mSettingFragment);
                 Log.d("Clicked", "setting");
             }
             break;
-            case R.id.tomato_clock_button:{
-                mCurrentLayoutID = R.id.tomato_clock_fragment_container;
+            case R.id.tomato_clock_button: {
                 showFragment(mTomatoClockFragment);
-                Log.d("Clicked","tomatoClock");
+                Log.d("Clicked", "tomatoClock");
             }
             break;
             default:
@@ -128,6 +126,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    public void onDialogPositiveClick(RecordDialog dialog) {
+        statisticsFragment fragment = (statisticsFragment) mStatisticsFragment;
+        fragment.RecordDelete(dialog.getRecord());
+    }
+
+    @Override
+    public void onDialogNegativeClick(RecordDialog dialog) {
+    }
 }
 
 
