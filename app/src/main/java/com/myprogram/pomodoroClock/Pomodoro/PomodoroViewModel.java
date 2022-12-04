@@ -26,4 +26,24 @@ public class PomodoroViewModel extends AndroidViewModel {
     public void insert(Pomodoro pomodoro) {
         mRepository.insert(pomodoro);
     }
+
+    public void delete(Pomodoro pomodoro) {
+        mRepository.delete(pomodoro);
+    }
+
+    public void updateName(long id, String nName) {
+        mRepository.updateName(id, nName);
+    }
+
+    public void updateDuration(long id, int nDuration) {
+        mRepository.updateDuration(id, nDuration);
+    }
+
+    public void updateTime(long id, int nTime) {
+        mRepository.updateTime(id, nTime);
+    }
+
+    public void updateCount(long id, int nCount) {
+        mRepository.updateCount(id, nCount);
+    }
 }

@@ -21,8 +21,8 @@ public class ToDo {
     private long mId;
 
     @NonNull
-    @ColumnInfo(name = "name")
-    private String mName;
+    @ColumnInfo(name = "content")
+    private String mContent;
 
     @ColumnInfo(name = "isFinished")
     private boolean isFinished;
@@ -35,38 +35,38 @@ public class ToDo {
         this.mId = mId;
     }
 
-    public void setName(@NonNull String mName) {
-        this.mName = mName;
-    }
-
     @NonNull
-    public String getName() {
-        return mName;
+    public String getContent() {
+        return mContent;
     }
 
-    public void setFinished(boolean finished) {
-        isFinished = finished;
+    public void setContent(@NonNull String mContent) {
+        this.mContent = mContent;
     }
 
     public boolean isFinished() {
         return isFinished;
     }
 
+    public void setFinished(boolean finished) {
+        isFinished = finished;
+    }
+
     public ToDo() {
         this.mId = -1;
-        this.mName = "untitled";
+        this.mContent = "untitled";
         this.isFinished = false;
     }
 
-    public ToDo(@NonNull String _Name, boolean _IsDone) {
+    public ToDo(@NonNull String _Content, boolean _IsDone) {
         this.mId = IdAlloctor.getID();
-        this.mName = _Name;
+        this.mContent = _Content;
         this.isFinished = _IsDone;
     }
 
-    public ToDo(@NonNull String _Name) {
+    public ToDo(@NonNull String _Content) {
         this.mId = IdAlloctor.getID();
-        this.mName = _Name;
+        this.mContent = _Content;
         this.isFinished = false;
     }
 
@@ -75,7 +75,7 @@ public class ToDo {
     public String toString() {
         return "ToDo{" +
                 "mId=" + mId +
-                ", mName='" + mName + '\'' +
+                ", mContent='" + mContent + '\'' +
                 ", isDone=" + isFinished +
                 '}';
     }
@@ -85,11 +85,11 @@ public class ToDo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ToDo toDo = (ToDo) o;
-        return mId == toDo.mId && isFinished == toDo.isFinished && mName.equals(toDo.mName);
+        return mId == toDo.mId && isFinished == toDo.isFinished && mContent.equals(toDo.mContent);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mId, mName, isFinished);
+        return Objects.hash(mId, mContent, isFinished);
     }
 }

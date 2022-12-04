@@ -26,4 +26,27 @@ public class ToDoRepository {
         });
     }
 
+    void delete(ToDo toDo) {
+        ToDoRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mToDoDao.delete(toDo);
+        });
+    }
+
+    void updateToDo(long id, String nContent, boolean nisFinished) {
+        ToDoRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mToDoDao.updateToDo(id, nContent, nisFinished);
+        });
+    }
+
+    void updateToDo(long id, String nContent) {
+        ToDoRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mToDoDao.updateToDo(id, nContent);
+        });
+    }
+
+    void updateToDo(long id, boolean nisFinished) {
+        ToDoRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mToDoDao.updateToDo(id, nisFinished);
+        });
+    }
 }
