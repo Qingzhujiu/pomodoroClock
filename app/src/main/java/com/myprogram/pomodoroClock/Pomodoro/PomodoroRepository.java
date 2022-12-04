@@ -26,4 +26,33 @@ public class PomodoroRepository {
         });
     }
 
+    void delete(Pomodoro pomodoro) {
+        PomodoroRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mPomodoroDao.delete(pomodoro);
+        });
+    }
+
+    void updateName(long id, String nName) {
+        PomodoroRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mPomodoroDao.updateName(id, nName);
+        });
+    }
+
+    void updateDuration(long id, int nDuration) {
+        PomodoroRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mPomodoroDao.updateDuration(id, nDuration);
+        });
+    }
+
+    void updateTime(long id, int nTime) {
+        PomodoroRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mPomodoroDao.updateTime(id, nTime);
+        });
+    }
+
+    void updateCount(long id, int nCount) {
+        PomodoroRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mPomodoroDao.updateCount(id, nCount);
+        });
+    }
 }
