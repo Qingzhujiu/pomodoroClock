@@ -16,6 +16,9 @@
       <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[select sum(duration) from record_table]]></console>
     </connection>
   </component>
+  <component name="DBNavigator.Project.DatabaseEditorStateManager">
+    <last-used-providers />
+  </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>

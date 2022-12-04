@@ -19,13 +19,15 @@ public class todo_insert_dialog extends Dialog implements View.OnClickListener {
     Button todo_dialog_bt;
     EditText todo_dialog_et;
     RecordViewModel mRecordViewModel;
+    ToDo toDo;
 
-
-   public todo_insert_dialog(Context context, RecordViewModel recordViewModel){
+   public todo_insert_dialog(Context context, RecordViewModel recordViewModel,ToDo toDo){
        super(context);
        //
        mRecordViewModel = recordViewModel;
        //
+       this.toDo=toDo;
+
    }
 
     @Override
@@ -37,6 +39,11 @@ public class todo_insert_dialog extends Dialog implements View.OnClickListener {
         todo_dialog_et = findViewById(R.id.todo_dialog_et);
         todo_dialog_bt.setOnClickListener(this);
         todo_dialog_bt.setClickable(false);
+
+        if (toDo!=null){
+            todo_dialog_et.setText (toDo.getContent());
+            todo_dialog_bt.setClickable(true);
+        }
 
         todo_dialog_et.addTextChangedListener(new TextWatcher() {
             @Override
@@ -74,6 +81,7 @@ public class todo_insert_dialog extends Dialog implements View.OnClickListener {
             ToDo toDo = new ToDo(false,todo_dialog_et.getText().toString());
             Record record = new Record();
             mRecordViewModel.insert(record);
+            this.cancel();
 
             //将该信息存入数据库中
             //待办

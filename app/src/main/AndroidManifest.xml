@@ -12,13 +12,6 @@
         android:theme="@style/Theme.PomodoroClock"
         tools:targetApi="31">
         <activity
-            android:name=".dialog.tomato_clock_touch_dialog"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".clock"
             android:exported="false">
             <meta-data
@@ -27,13 +20,6 @@
         </activity>
         <activity
             android:name=".items.tomato_clock_items"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".dialog.tomato_clock_add_dialog"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

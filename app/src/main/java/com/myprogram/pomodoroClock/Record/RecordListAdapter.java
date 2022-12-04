@@ -39,6 +39,7 @@ public class RecordListAdapter extends ListAdapter<Record, RecordViewHolder> {
                 recordDialog.show(fm, "recordDialog");
             }
         });
+
     }
 
 

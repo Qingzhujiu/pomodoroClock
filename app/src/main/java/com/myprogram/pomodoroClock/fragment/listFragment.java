@@ -22,9 +22,10 @@ import com.myprogram.pomodoroClock.pojo.ToDo;
 
 import java.util.List;
 
-public class listFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class listFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
     View view;
     RecordViewModel recordViewModel;
+    List<ToDo> todoInfo;
 
     @Nullable
     @Override
@@ -42,11 +43,11 @@ public class listFragment extends Fragment implements View.OnClickListener, Adap
         todo_layout_bt.setOnClickListener(this);
 
         //获取数据
-        List<ToDo> todoInfo = ToDoListGenerator.getTodoInfo();
+        todoInfo = ToDoListGenerator.getTodoInfo();
         //构造一个适配器
         ItemBaseAdapter itemBaseAdapter = new ItemBaseAdapter(view.getContext(),todoInfo);
         todo_list_lv.setAdapter(itemBaseAdapter);
-        todo_list_lv.setOnItemSelectedListener(this);
+        todo_list_lv.setOnItemClickListener(this);
 
         return view;
     }
@@ -54,23 +55,18 @@ public class listFragment extends Fragment implements View.OnClickListener, Adap
     @Override
     public void onClick(View view) {
         if (view.getId()==R.id.todo_layout_bt){
-            showDialog();
+            showDialog(null);
         }
     }
 
-    private void showDialog(){
-        todo_insert_dialog todo_insert_dialog = new todo_insert_dialog(view.getContext(), recordViewModel);
+    private void showDialog(ToDo toDo){
+        todo_insert_dialog todo_insert_dialog = new todo_insert_dialog(view.getContext(), recordViewModel,toDo);
         todo_insert_dialog.show();
 
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        //待办 思路：复用添加时的dialog即可 替换diaglog中EditText组件的text属性即可 基本思路同添加
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        showDialog(todoInfo.get(i));
     }
 }

@@ -32,7 +32,7 @@ public class tomato_clock_add_dialog extends Dialog implements View.OnClickListe
 
         tomato_clock_dialog_et = findViewById(R.id.tomato_clock_dialog_et);
         tomato_clock_dialog_bt_no = findViewById(R.id.tomato_clock_dialog_bt_no);
-        tomato_clock_dialog_bt_yes = findViewById(R.id.tomato_clock_dialog_bt_no);
+        tomato_clock_dialog_bt_yes = findViewById(R.id.tomato_clock_dialog_bt_yes);
         tomato_clock_dialog_rg = findViewById(R.id.tomato_clock_dialog_rg);
 
         tomato_clock_dialog_bt_no.setOnClickListener(this);
@@ -46,9 +46,12 @@ public class tomato_clock_add_dialog extends Dialog implements View.OnClickListe
             //点击确认按钮
 
 
-        }else if (R.id.tomato_clock_dialog_bt_yes == view.getId()){
-            //点击取消按钮
 
+            this.cancel();
+
+        }else if (R.id.tomato_clock_dialog_bt_no == view.getId()){
+            //点击取消按钮
+            this.cancel();
 
 
         }

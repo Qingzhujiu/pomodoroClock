@@ -83,6 +83,7 @@ public class RecordDialog extends DialogFragment {
                         Toast.LENGTH_SHORT).show();
             }
         });
+
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

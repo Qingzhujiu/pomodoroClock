@@ -1,7 +1,7 @@
 package com.myprogram.pomodoroClock.pojo;
 
 public class ToDo {
-
+    long todoId;
     //任务是否完成
     private boolean isFinished;
     //任务的内容

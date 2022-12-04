@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/tomato_clock_fragment_container"
     tools:context=".fragment.tomatoClockFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,7 +44,7 @@
             android:layout_height="wrap_content"
             android:divider="@null"
             android:dividerHeight="5dp"
-            android:listSelector="@color/transparent" />
+            android:listSelector="@color/transparent"/>
 
     </LinearLayout>
 </FrameLayout>
