@@ -2,6 +2,8 @@ package com.myprogram.pomodoroClock.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +21,10 @@ import com.myprogram.pomodoroClock.pojo.Pomodora;
 import java.net.URL;
 import java.util.List;
 
-public class TomatoClockBaseAdapter extends BaseAdapter implements View.OnClickListener  {
+public class TomatoClockBaseAdapter extends BaseAdapter{
     private Context mContext;
     private List<Pomodora> mItemList;
-
-
+    Pomodora pomodora;
     public TomatoClockBaseAdapter(Context mContext, List<Pomodora> mItemList) {
         this.mContext = mContext;
         this.mItemList = mItemList;
@@ -59,8 +60,12 @@ public class TomatoClockBaseAdapter extends BaseAdapter implements View.OnClickL
         TextView tomato_clock_item_name = mview.findViewById(R.id.tomato_clock_item_name);
         TextView tomato_clock_item_time = mview.findViewById(R.id.tomato_clock_item_time);
         Button tomato_clock_item_start = mview.findViewById(R.id.tomato_clock_item_start);
-        tomato_clock_item_start.setOnClickListener(this);
-        Pomodora pomodora = mItemList.get(i);
+
+        pomodora = mItemList.get(i);
+
+        myOnClickListener myOnClickListener = new myOnClickListener(pomodora.getTime());
+        tomato_clock_item_start.setOnClickListener(myOnClickListener);
+
         tomato_clock_item_name.setText(pomodora.getClockName());
 
         //因为存取的数据是int型的，但setText方法为Sting所以需要先转为Sting类型
@@ -71,10 +76,21 @@ public class TomatoClockBaseAdapter extends BaseAdapter implements View.OnClickL
         return mview;
     }
 
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(view.getContext(),clock.class);
-        view.getContext().startActivity(intent);
+    private class myOnClickListener implements View.OnClickListener{
+        int time;
+        myOnClickListener(int time){
+            this.time = time;
+        }
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(view.getContext(),clock.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("time", time);
+            intent.putExtras(bundle);
+            view.getContext().startActivity(intent);
+        }
+
+
     }
 
 }
