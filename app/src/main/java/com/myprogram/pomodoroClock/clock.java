@@ -13,6 +13,8 @@ import com.myprogram.pomodoroClock.Pomodoro.PomodoroViewModel;
 import com.myprogram.pomodoroClock.Record.Record;
 import com.myprogram.pomodoroClock.Record.RecordViewModel;
 
+import java.sql.Date;
+
 
 public class clock extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,7 +34,7 @@ public class clock extends AppCompatActivity implements View.OnClickListener {
         long clockId = extras.getLong("clockId");
         int count = extras.getInt("count");
         int duration = extras.getInt("duration");
-
+        String name = extras.getString("name");
 
         Button clock_bt = findViewById(R.id.clock_bt);
         clock_bt.setOnClickListener(this);
@@ -54,11 +56,9 @@ public class clock extends AppCompatActivity implements View.OnClickListener {
                 clock_tx.setText("恭喜你完成了本次番茄钟任务！");
                 pomodoroViewModel.updateCount(clockId,count+1);
                 pomodoroViewModel.updateDuration(clockId,duration+time);
-
-                Record record = new Record();
+                Date date = new Date(System.currentTimeMillis());
+                Record record = new Record(date,"1",name,duration,1);
                 recordViewModel.insert(record);
-
-
                 finish();
             }
         };

@@ -16,11 +16,10 @@ import com.myprogram.pomodoroClock.ToDo.ToDoViewModel;
 
 import java.util.List;
 
-public class ItemBaseAdapter extends BaseAdapter implements CompoundButton.OnCheckedChangeListener {
+public class ItemBaseAdapter extends BaseAdapter {
     private Context mContext;
     private List<ToDo> mItemList;
     ToDoViewModel toDoViewModel;
-    ToDo item;
     TextView todo_items_text;
 
     public ItemBaseAdapter(Context mContext, List<ToDo> mItem,ToDoViewModel toDoViewModel) {
@@ -50,23 +49,32 @@ public class ItemBaseAdapter extends BaseAdapter implements CompoundButton.OnChe
 
         //先获取该视图
         View mview = LayoutInflater.from(mContext).inflate(R.layout.activity_todo_items, null);
-        item = mItemList.get(i);
+        ToDo item = mItemList.get(i);
         todo_items_text = mview.findViewById(R.id.todo_items_text);
         if (item.isFinished()){
             todo_items_text.setTextColor(0x4B9EB3C3);
         }
 
+        mOnCheckedChangeListener mOnCheckedChangeListener = new mOnCheckedChangeListener(item);
+
         CheckBox todo_items_ck = mview.findViewById(R.id.todo_items_ck);
         todo_items_text.setText(item.getContent());
         todo_items_ck.setChecked(item.isFinished());
-        todo_items_ck.setOnCheckedChangeListener(this);
+        todo_items_ck.setOnCheckedChangeListener(mOnCheckedChangeListener);
         return mview;
     }
 
+    private class mOnCheckedChangeListener implements CompoundButton.OnCheckedChangeListener {
+        ToDo todo;
 
-    @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        public mOnCheckedChangeListener(ToDo todo) {
+            this.todo = todo;
+        }
 
-        toDoViewModel.updateToDo(item.getId(),b);
+        @Override
+        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            toDoViewModel.updateToDo(todo.getId(),b);
+        }
     }
+
 }

@@ -86,6 +86,7 @@ public class TomatoClockBaseAdapter extends BaseAdapter{
             bundle.putLong("clockId",pomodoro.getId());
             bundle.putInt("count",pomodoro.getCount());
             bundle.putInt("duration", pomodoro.getDuration());
+            bundle.putString("name",pomodoro.getName());
             intent.putExtras(bundle);
             view.getContext().startActivity(intent);
         }

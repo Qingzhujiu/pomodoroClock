@@ -10,15 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import com.myprogram.pomodoroClock.Record.Record;
 import com.myprogram.pomodoroClock.Record.RecordDialog;
 import com.myprogram.pomodoroClock.fragment.listFragment;
-import com.myprogram.pomodoroClock.fragment.settingsFragment;
 import com.myprogram.pomodoroClock.fragment.statisticsFragment;
 import com.myprogram.pomodoroClock.fragment.tomatoClockFragment;
 
@@ -47,14 +40,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     void initButton() {
         mListRButton = findViewById(R.id.list_button);
         mStatisticsRButton = findViewById(R.id.statistics_button);
+        /*
         mSettingRButton = findViewById(R.id.settings_button);
+
+         */
         mTomatoClockButton = findViewById(R.id.tomato_clock_button);
     }
 
     void initEvent() {
         mListRButton.setOnClickListener(this);
         mStatisticsRButton.setOnClickListener(this);
+        /*
         mSettingRButton.setOnClickListener(this);
+         */
         mTomatoClockButton.setOnClickListener(this);
     }
 
@@ -72,12 +70,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mStatisticsBundle = new Bundle();
         mStatisticsFragment.setArguments(mStatisticsBundle);
         //transaction.add(R.id.settings_fragment_container, mSettingFragment).commit();
-
+        /*
         mSettingFragment = new settingsFragment();
         mSettingBundle = new Bundle();
         mSettingFragment.setArguments(mSettingBundle);
         //transaction.add(R.id.statistics_fragment_container, mStatisticsFragment).commit();
-
+         */
         mTomatoClockFragment = new tomatoClockFragment();
         mTomatoClockBundle = new Bundle();
         mTomatoClockFragment.setArguments(mTomatoClockBundle);
@@ -111,11 +109,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("Clicked", "statistics");
             }
             break;
+            /*
             case R.id.settings_button: {
                 showFragment(mSettingFragment);
                 Log.d("Clicked", "setting");
             }
             break;
+
+             */
             case R.id.tomato_clock_button: {
                 showFragment(mTomatoClockFragment);
                 Log.d("Clicked", "tomatoClock");
