@@ -1,5 +1,8 @@
 package com.myprogram.pomodoroClock.dialog;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -10,35 +13,35 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.myprogram.pomodoroClock.R;
-
 import com.myprogram.pomodoroClock.ToDo.ToDo;
 import com.myprogram.pomodoroClock.ToDo.ToDoViewModel;
 
+public class todo_edit_dialog extends Dialog implements View.OnClickListener {
 
-public class todo_insert_dialog extends Dialog implements View.OnClickListener {
-
-    Button todo_dialog_bt;
+    Button todo_edit_dialog_change;
+    Button todo_edit_dialog_del;
     EditText todo_dialog_et;
     ToDoViewModel mtoDoViewModel;
+    ToDo toDo;
 
-
-   public todo_insert_dialog(Context context, ToDoViewModel toDoViewModel){
-       super(context);
-       mtoDoViewModel = toDoViewModel;
-
-
-   }
+    public todo_edit_dialog(@NonNull Context context,ToDoViewModel mtoDoViewModel,ToDo toDo) {
+        super(context);
+        this.mtoDoViewModel = mtoDoViewModel;
+        this.toDo = toDo;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_todo_insert_dialog);
-
-        todo_dialog_bt = findViewById(R.id.todo_dialog_bt);
+        setContentView(R.layout.activity_todo_edit_dialog);
+        todo_edit_dialog_change = findViewById(R.id.todo_edit_dialog_change);
+        todo_edit_dialog_del = findViewById(R.id.todo_edit_dialog_del);
         todo_dialog_et = findViewById(R.id.todo_dialog_et);
-        todo_dialog_bt.setOnClickListener(this);
-        todo_dialog_bt.setClickable(false);
 
+        todo_edit_dialog_change.setOnClickListener(this);
+        todo_edit_dialog_del.setOnClickListener(this);
+        todo_dialog_et.setText (toDo.getContent());
+        todo_edit_dialog_change.setClickable(true);
 
         todo_dialog_et.addTextChangedListener(new TextWatcher() {
             @Override
@@ -46,19 +49,12 @@ public class todo_insert_dialog extends Dialog implements View.OnClickListener {
 
             }
 
-            /**
-             * 对文本框进行监听，如果有输入内容，则可以点击完成，若没有文本，则无法点击完成按钮进行保存
-             * @param charSequence
-             * @param i
-             * @param i1
-             * @param i2
-             */
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence!=null && !"".equals(charSequence.toString())){
-                    todo_dialog_bt.setClickable(true);
+                    todo_edit_dialog_change.setClickable(true);
                 }else {
-                    todo_dialog_bt.setClickable(false);
+                    todo_edit_dialog_change.setClickable(false);
                 }
             }
 
@@ -68,18 +64,22 @@ public class todo_insert_dialog extends Dialog implements View.OnClickListener {
             }
         });
 
+
+
+
     }
 
     @Override
     public void onClick(View view) {
-        if (R.id.todo_dialog_bt==view.getId()){
-            ToDo todo = new ToDo(todo_dialog_et.getText().toString(),false);
+        if (R.id.todo_edit_dialog_change == view.getId()){
 
-            mtoDoViewModel.insert(todo);
+            mtoDoViewModel.updateToDo(toDo.getId(),todo_dialog_et.getText().toString(),toDo.isFinished());
             this.cancel();
 
+        }else if (R.id.todo_edit_dialog_del == view.getId()){
+
+            mtoDoViewModel.delete(toDo);
+            this.cancel();
         }
-
     }
-
 }

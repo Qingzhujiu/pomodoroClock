@@ -14,4 +14,5 @@
     <color name="buttonLabel">#FFFFFFFF</color>
     <color name="colorPrimary">#66ccff</color>
     <color name="red">#E80909</color>
+    <color name="grey">#4B9EB3C3</color>
 </resources>

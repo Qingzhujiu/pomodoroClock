@@ -11,23 +11,23 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.myprogram.pomodoroClock.MainActivity;
+import com.myprogram.pomodoroClock.Pomodoro.PomodoroViewModel;
 import com.myprogram.pomodoroClock.R;
 import com.myprogram.pomodoroClock.clock;
-import com.myprogram.pomodoroClock.pojo.Pomodora;
+import com.myprogram.pomodoroClock.Pomodoro.Pomodoro;
 
-import java.net.URL;
+import java.time.Duration;
 import java.util.List;
 
 public class TomatoClockBaseAdapter extends BaseAdapter{
     private Context mContext;
-    private List<Pomodora> mItemList;
-    Pomodora pomodora;
-    public TomatoClockBaseAdapter(Context mContext, List<Pomodora> mItemList) {
+    private List<Pomodoro> mItemList;
+    Pomodoro pomodoro;
+
+    public TomatoClockBaseAdapter(Context mContext, List<Pomodoro> mItemList) {
         this.mContext = mContext;
         this.mItemList = mItemList;
+
     }
 
     @Override
@@ -61,31 +61,32 @@ public class TomatoClockBaseAdapter extends BaseAdapter{
         TextView tomato_clock_item_time = mview.findViewById(R.id.tomato_clock_item_time);
         Button tomato_clock_item_start = mview.findViewById(R.id.tomato_clock_item_start);
 
-        pomodora = mItemList.get(i);
+        pomodoro = mItemList.get(i);
 
-        myOnClickListener myOnClickListener = new myOnClickListener(pomodora.getTime());
+        myOnClickListener myOnClickListener = new myOnClickListener();
         tomato_clock_item_start.setOnClickListener(myOnClickListener);
 
-        tomato_clock_item_name.setText(pomodora.getClockName());
+        tomato_clock_item_name.setText(pomodoro.getName());
 
         //因为存取的数据是int型的，但setText方法为Sting所以需要先转为Sting类型
         //int类型会被识别为 id为xxx的资源文件 因此会报错
-        Integer time = pomodora.getTime();
+        Integer time = pomodoro.getTime();
         String s = time.toString()+"分钟";
         tomato_clock_item_time.setText(s);
         return mview;
     }
 
     private class myOnClickListener implements View.OnClickListener{
-        int time;
-        myOnClickListener(int time){
-            this.time = time;
-        }
+
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(view.getContext(),clock.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("time", time);
+            bundle.putInt("time",pomodoro.getTime());
+            bundle.putLong("clockId",pomodoro.getId());
+            bundle.putInt("count",pomodoro.getCount());
+            bundle.putInt("duration", pomodoro.getDuration());
+            bundle.putString("name",pomodoro.getName());
             intent.putExtras(bundle);
             view.getContext().startActivity(intent);
         }

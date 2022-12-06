@@ -1,4 +1,6 @@
 package com.myprogram.pomodoroClock.Pomodoro;
 
-public class PomodoroConverters {
+import java.io.Serializable;
+
+public class PomodoroConverters{
 }
