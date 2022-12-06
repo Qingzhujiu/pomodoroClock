@@ -20,7 +20,6 @@ public interface ToDoDao {
 
     @Delete
     void delete(ToDo toDo);
-
     @Query("SELECT * FROM todo_table ORDER BY todo_id ASC")
     LiveData<List<ToDo>> getToDos();
 

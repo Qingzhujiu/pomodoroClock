@@ -9,11 +9,12 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
+import java.io.Serializable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Pomodoro.class}, version = 1, exportSchema = false)
-public abstract class PomodoroRoomDatabase extends RoomDatabase {
+public abstract class PomodoroRoomDatabase extends RoomDatabase{
     public abstract PomodoroDao PomodoroDao();
 
     private static volatile PomodoroRoomDatabase INSTANCE;

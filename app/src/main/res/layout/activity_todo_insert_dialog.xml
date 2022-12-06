@@ -17,7 +17,8 @@
             android:layout_weight="4"
             android:layout_gravity="center"
             android:background="@color/white"
-            android:hint="请输入待办事项..."/>
+            android:hint="请输入待办事项..."
+            android:singleLine="true"/>
 
         <Button
             android:id="@+id/todo_dialog_bt"

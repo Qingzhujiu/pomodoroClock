@@ -11,7 +11,7 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface PomodoroDao {
+public interface PomodoroDao{
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Pomodoro pomodoro);
 

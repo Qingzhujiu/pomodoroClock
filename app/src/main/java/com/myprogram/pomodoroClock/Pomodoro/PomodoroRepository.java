@@ -4,9 +4,10 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PomodoroRepository {
+public class PomodoroRepository{
     private PomodoroDao mPomodoroDao;
     private LiveData<List<Pomodoro>> mAllPomodoros;
 

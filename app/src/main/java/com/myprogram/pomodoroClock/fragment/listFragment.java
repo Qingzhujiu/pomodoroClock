@@ -11,21 +11,21 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.myprogram.pomodoroClock.R;
-import com.myprogram.pomodoroClock.Record.RecordViewModel;
+import com.myprogram.pomodoroClock.ToDo.ToDo;
+import com.myprogram.pomodoroClock.ToDo.ToDoViewModel;
 import com.myprogram.pomodoroClock.adapter.ItemBaseAdapter;
-import com.myprogram.pomodoroClock.bean.ToDoListGenerator;
+import com.myprogram.pomodoroClock.dialog.todo_edit_dialog;
 import com.myprogram.pomodoroClock.dialog.todo_insert_dialog;
-import com.myprogram.pomodoroClock.pojo.ToDo;
+
 
 import java.util.List;
 
-public class listFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class listFragment extends Fragment implements View.OnClickListener {
     View view;
-    RecordViewModel recordViewModel;
-    List<ToDo> todoInfo;
+    ToDoViewModel toDoViewModel;
 
     @Nullable
     @Override
@@ -34,7 +34,7 @@ public class listFragment extends Fragment implements View.OnClickListener, Adap
         Bundle bundle = getArguments();
 
         //
-        recordViewModel = new ViewModelProvider(this).get(RecordViewModel.class);
+        toDoViewModel =new ViewModelProvider(this).get(ToDoViewModel.class);
         //
 
         ListView todo_list_lv = view.findViewById(R.id.todo_list_lv);
@@ -42,31 +42,42 @@ public class listFragment extends Fragment implements View.OnClickListener, Adap
 
         todo_layout_bt.setOnClickListener(this);
 
-        //获取数据
-        todoInfo = ToDoListGenerator.getTodoInfo();
-        //构造一个适配器
-        ItemBaseAdapter itemBaseAdapter = new ItemBaseAdapter(view.getContext(),todoInfo);
-        todo_list_lv.setAdapter(itemBaseAdapter);
-        todo_list_lv.setOnItemClickListener(this);
+        toDoViewModel.getAllToDos().observe(this.getViewLifecycleOwner(), new Observer<List<ToDo>>() {
+            @Override
+            public void onChanged(List<ToDo> toDos) {
+                ItemBaseAdapter itemBaseAdapter = new ItemBaseAdapter(view.getContext(),toDos,toDoViewModel);
+                mOnItemClickListener mOnItemClickListener = new mOnItemClickListener(toDos);
+                todo_list_lv.setAdapter(itemBaseAdapter);
+                todo_list_lv.setOnItemClickListener(mOnItemClickListener);
+            }
+
+            class mOnItemClickListener implements AdapterView.OnItemClickListener{
+
+                List<ToDo> toDos;
+
+                public mOnItemClickListener(List<ToDo> toDos) {
+                    this.toDos = toDos;
+                }
+
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    todo_edit_dialog todo_edit_dialog = new todo_edit_dialog(view.getContext(),toDoViewModel,toDos.get(i));
+                    todo_edit_dialog.show();
+                }
+            }
+        });
 
         return view;
     }
 
+
     @Override
     public void onClick(View view) {
         if (view.getId()==R.id.todo_layout_bt){
-            showDialog(null);
+            todo_insert_dialog todo_insert_dialog = new todo_insert_dialog(view.getContext(), toDoViewModel);
+            todo_insert_dialog.show();
         }
     }
 
-    private void showDialog(ToDo toDo){
-        todo_insert_dialog todo_insert_dialog = new todo_insert_dialog(view.getContext(), recordViewModel,toDo);
-        todo_insert_dialog.show();
 
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        showDialog(todoInfo.get(i));
-    }
 }

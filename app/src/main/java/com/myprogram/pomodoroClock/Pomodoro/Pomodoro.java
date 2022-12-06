@@ -6,12 +6,13 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity(tableName = "pomodoro_table")
 
 public class Pomodoro {
-    static class IdAlloctor {
+    static class IdAlloctor{
         static public long getID() {
             return System.currentTimeMillis();
         }
