@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 
+import com.myprogram.pomodoroClock.Pomodoro.Pomodoro;
+import com.myprogram.pomodoroClock.Pomodoro.PomodoroViewModel;
 import com.myprogram.pomodoroClock.Record.RecordDialog;
 import com.myprogram.pomodoroClock.fragment.listFragment;
 import com.myprogram.pomodoroClock.fragment.statisticsFragment;

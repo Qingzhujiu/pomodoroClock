@@ -38,11 +38,11 @@ public class clock extends AppCompatActivity implements View.OnClickListener {
 
         Button clock_bt = findViewById(R.id.clock_bt);
         clock_bt.setOnClickListener(this);
-
+        Date date = new Date(System.currentTimeMillis());
         CountDownTimer countDownTimer = new CountDownTimer(time * 60000, 1000) {
-
             @Override
             public void onTick(long millisUntilFinished) {
+
                 long second;
                 long minute;
                 second = millisUntilFinished / 60000;
@@ -56,7 +56,6 @@ public class clock extends AppCompatActivity implements View.OnClickListener {
                 clock_tx.setText("恭喜你完成了本次番茄钟任务！");
                 pomodoroViewModel.updateCount(clockId,count+1);
                 pomodoroViewModel.updateDuration(clockId,duration+time);
-                Date date = new Date(System.currentTimeMillis());
                 Record record = new Record(date,"1",name,duration,1);
                 recordViewModel.insert(record);
                 finish();
