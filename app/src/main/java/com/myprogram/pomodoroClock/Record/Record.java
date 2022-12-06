@@ -52,11 +52,11 @@ public class Record implements Serializable {
     public Record(@NonNull Date _SqlDate, @NonNull String _Type, @NonNull String _Name,
                   int _Duration, int _Times) {
         this.mId = IdAlloctor.getID();
-        this.mDate = _SqlDate;
-        this.mType = _Type;
-        this.mName = _Name;
-        this.mDuration = _Duration;
-        this.mTimes = _Times;
+        this.mDate = _SqlDate;// 番茄钟开始时间
+        this.mType = _Type;// 番茄钟类型，随便填一个，现在废弃了
+        this.mName = _Name;// 番茄钟名称
+        this.mDuration = _Duration;// 持续多久
+        this.mTimes = _Times;// 执行几次
     }
 
     public Record(long _SqlDate, @NonNull String _Type, @NonNull String _Name,

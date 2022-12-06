@@ -70,7 +70,12 @@ public class statisticsFragment extends Fragment {
                     e.printStackTrace();
                 }
                 // 显示平均每次时长
-                totalPerDurationTV.setText(integerToTime(integer / times));
+                try {
+                    totalPerDurationTV.setText(integerToTime(integer / times));
+                }catch (Exception e){
+                    totalPerDurationTV.setText("0");
+                    e.printStackTrace();
+                }
             });
         });
 
