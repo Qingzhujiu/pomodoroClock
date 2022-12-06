@@ -72,7 +72,7 @@ public class statisticsFragment extends Fragment {
                 // 显示平均每次时长
                 try {
                     totalPerDurationTV.setText(integerToTime(integer / times));
-                }catch (Exception e){
+                } catch (Exception e) {
                     totalPerDurationTV.setText("0");
                     e.printStackTrace();
                 }
@@ -104,6 +104,8 @@ public class statisticsFragment extends Fragment {
         });
         // 绑定监听器
         calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
+            TextView todayTV = view.findViewById(R.id.statistics_fragment_dayConcentration_todayDate);
+            todayTV.setText(String.format("%d-%d-%d", year, month+1, dayOfMonth));
             Calendar calendar = Calendar.getInstance();
             calendar.clear();
             calendar.set(year, month, dayOfMonth, 0, 0, 0);
